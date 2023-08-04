@@ -34,9 +34,10 @@ exports.handler = async function(event, context) {
       };
     }
   } catch (error) {
+    console.error(error);  // This line will log the error details to the console
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Erreur" }),
+        statusCode: 500,
+        body: JSON.stringify({ error: "Erreur: " + error.message }), // this will include error message in the response
     };
   }
 };
