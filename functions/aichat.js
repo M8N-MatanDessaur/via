@@ -12,6 +12,7 @@ const fetchGoogleSearchResults = async (query) => {
 
     if (response.data.items) {
       const firstResult = response.data.items[0];
+      console.log(firstResult);
       return `${firstResult.title}: ${firstResult.snippet}`;
     }
 
