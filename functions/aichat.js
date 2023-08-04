@@ -17,7 +17,8 @@ exports.handler = async function(event, context) {
         enable_google_results: 'true', 
         enable_memory: false, 
         input_text: userInput
-      }
+      },
+      timeout: 45000,
     };
   
     const response = await axios.request(options);
@@ -35,9 +36,16 @@ exports.handler = async function(event, context) {
     }
   } catch (error) {
     console.error(error);  // This line will log the error details to the console
-    return {
+    if (error.code === 'ECONNABORTED') { // Axios error code for a timeout
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Timeout: The request took too long to complete." }),
+      };
+    } else {
+      return {
         statusCode: 500,
         body: JSON.stringify({ error: "Erreur: " + error.message }), // this will include error message in the response
-    };
+      };
+    }
   }
 };
