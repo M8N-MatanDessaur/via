@@ -1,3 +1,28 @@
+const axios = require('axios');
+
+const fetchGoogleSearchResults = async (query) => {
+  try {
+    const response = await axios.get(`https://www.googleapis.com/customsearch/v1`, {
+      params: {
+        key: process.env.GOOGLE_SEARCH_API_KEY,
+        cx: process.env.CUSTOM_SEARCH_ENGINE_ID,
+        q: query
+      }
+    });
+
+    if (response.data.items) {
+      const firstResult = response.data.items[0];
+      console.log(firstResult);
+      return `${firstResult.title}: ${firstResult.snippet}`;
+    }
+
+    return null;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 exports.handler = async function(event, context) {
   try {
     const conversationHistory = event.queryStringParameters.history;
