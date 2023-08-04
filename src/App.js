@@ -67,14 +67,14 @@ export default function App() {
           ...chatHistory,
           {
             role: "AI",
-            text: "Erreur: " + error.message
+            text: "Une erreur est survenue: Le serveur a mis trop de temps à répondre."
           }
         ]);
       }
-      setIsLoading(false); // End loading
+      setIsLoading(false);
     };
   };
-  
+
     
 
     fetchAIResponse();

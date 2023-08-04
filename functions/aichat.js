@@ -15,7 +15,7 @@ exports.handler = async function(event, context) {
         'X-API-KEY': 'f77b4dde-6fc7-454c-8bf2-b7c963add936'
       },
       data: {
-        enable_google_results: 'true', 
+        enable_google_results: 'false', 
         enable_memory: false, 
         input_text: userInput
       },
