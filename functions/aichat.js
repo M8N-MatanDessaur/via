@@ -31,7 +31,7 @@ exports.handler = async function(event, context) {
   try {
     const conversationHistory = event.queryStringParameters.history;
     const userInput = event.queryStringParameters.input;
-    const searchResult = await fetchGoogleSearchResults(event.queryStringParameters.input);
+    const searchResult = await fetchGoogleSearchResults("Services Videotron");
 
     
     if (!searchResult) {
