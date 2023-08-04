@@ -15,7 +15,7 @@ exports.handler = async function(event, context) {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          "X-API-KEY": "f77b4dde-6fc7-454c-8bf2-b7c963add936"
+          "X-API-KEY": WS_API_KEY,
         },
       }
     );
