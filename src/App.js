@@ -259,7 +259,12 @@ border-bottom: none;
 background-color: #ffd200;
 border-bottom: none;
 border-top-left-radius: 10px;
-border-top-right-radius: 10px
+border-top-right-radius: 10px;
+
+@media (max-width: 500px) {
+  display: none !important;
+}
+
 `;
 
 const RapidAccess = styled.button`

@@ -94,3 +94,23 @@ a{
     background: transparent
 }
 
+
+
+.gcse-search, .gsc-control-cse .gsc-control-cse-fr, .___gcse_0{
+    position: absolute !important;
+    padding: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .gcse-search, .gsc-control-cse .gsc-control-cse-fr, #___gcse_0{
+        display: none !important;
+    }
+}
+
+.gsc-results-wrapper-overlay {
+    background-color: #1c1c1c !important;
+}
+
+.gsc-modal-background-image {
+    background-color: #000000 !important;
+}
