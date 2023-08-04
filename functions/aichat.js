@@ -47,7 +47,7 @@ exports.handler = async function(event, context) {
     Le suivant est une conversation entre un agent de vente de télécommunication et un assistant virtuel nommé VIA. L'assistant virtuel est programmé pour aider l'agent de vente à répondre aux questions des clients, et à fournir des informations sur les produits et services de l'entreprise videotron.
     ${conversationHistory}
     \nAgent de vente: ${userInput}
-    \nVIA: D'après mes recherches, ${searchResult}.`;
+    \nVIA: Voici mes recherces sous une liste de liens, ${searchResult}.`;
     const response = await axios.post("https://api.openai.com/v1/engines/text-davinci-003/completions", 
       {
         prompt: prompt,
