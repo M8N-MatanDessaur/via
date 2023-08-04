@@ -73,6 +73,8 @@ export default function App() {
       }
       setIsLoading(false); // End loading
     };
+  };
+  
     
 
     fetchAIResponse();
