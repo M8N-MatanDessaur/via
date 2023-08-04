@@ -4,8 +4,7 @@ exports.handler = async function(event, context) {
   try {
     const userInput = event.queryStringParameters.input;
 
-    const response = await axios.post("
-        https://api.writesonic.com/v2/business/content/chatsonic", 
+    const response = await axios.post("https://api.writesonic.com/v2/business/content/chatsonic", 
       {
         enable_google_results: 'true',
         enable_memory: true,
@@ -25,7 +24,7 @@ exports.handler = async function(event, context) {
     if (data) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ output: " "+data.output_text.trim() }), // You need to replace 'output_text' with the appropriate response property name
+        body: JSON.stringify({ output: " " + data.output_text.trim() }), // Replace 'output_text' with the appropriate response property name
       };
     } else {
       return {
