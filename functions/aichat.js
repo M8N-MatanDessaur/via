@@ -27,7 +27,7 @@ exports.handler = async function(event, context) {
   try {
     const conversationHistory = event.queryStringParameters.history;
     const userInput = event.queryStringParameters.input;
-    const searchResult = await fetchGoogleSearchResults('Videotron services');
+    const searchResult = await fetchGoogleSearchResults(event.queryStringParameters.input);
 
     // Include the search result as part of the AI's prompt
     const prompt = `
