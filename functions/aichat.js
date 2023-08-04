@@ -4,27 +4,29 @@ exports.handler = async function(event, context) {
   try {
     const userInput = event.queryStringParameters.input;
 
-    const response = await axios.post("https://api.writesonic.com/v2/business/content/chatsonic?engine=premium&language=fr", 
-      {
-        enable_google_results: 'true',
-        enable_memory: true,
-        input_text: userInput
+    const options = {
+      method: 'POST',
+      url: 'https://api.writesonic.com/v2/business/content/chatsonic',
+      params: {engine: 'premium', language: 'fr'},
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        'X-API-KEY': 'f77b4dde-6fc7-454c-8bf2-b7c963add936'
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "X-API-KEY": "f77b4dde-6fc7-454c-8bf2-b7c963add936",
-        },
+      data: {
+        enable_google_results: 'true', 
+        enable_memory: true, 
+        input_text: userInput
       }
-    );
+    };
+  
+    const response = await axios.request(options);
 
-    const data = response.json;
-
-    if (data) {
+    if (response.data) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ output: " " + data.trim() }),
+        body: JSON.stringify({ output: " " + response.data.output_text.trim() }), 
+      };
     } else {
       return {
         statusCode: 200,
