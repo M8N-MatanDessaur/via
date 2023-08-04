@@ -6,81 +6,99 @@ import Links from "./JSON/Links.json";
 
 
 export default function App() {
-    // state for the user's input
-    const [userInput, setUserInput] = useState("");
-  
-    // state for the conversation history
-    const [chatHistory, setChatHistory] = useState([
+  // state for the user's input
+  const [userInput, setUserInput] = useState("");
+
+  // state for the conversation history
+  const [chatHistory, setChatHistory] = useState([
+    {
+      role: "AI",
+      text: "Bonjour, je suis VIA, votre assistant virtuel. Je suis là pour vous aider à trouver les informations dont vous avez besoin."
+    }
+  ]);
+
+  // Fetches a response from the AI each time the user sends a message
+  useEffect(() => {
+    const fetchAIResponse = async () => {
+      const userMessage = chatHistory[chatHistory.length - 1];
+
+      if (userMessage && userMessage.role === "user") {
+        const response = await axios.get(
+          ".netlify/functions/aichat",
+          {
+            params: {
+              input: userMessage.text,
+              history: chatHistory.map(message => `\n${message.role === "AI" ? "VIA" : "Agent de vente"}: ${message.text}`).join('')
+            }
+          }
+        );
+
+        if (response.status === 200) {
+          setChatHistory([
+            ...chatHistory,
+            {
+              role: "AI",
+              text: response.data.output
+            }
+          ]);
+        }
+      }
+    };
+
+    fetchAIResponse();
+  }, [chatHistory]);
+
+  // Handles when the user sends a message
+  const handleSend = () => {
+    setChatHistory([
+      ...chatHistory,
       {
-        role: "AI",
-        text: "Bonjour, je suis VIA, votre assistant virtuel. Je suis là pour vous aider à trouver les informations dont vous avez besoin."
+        role: "user",
+        text: userInput
       }
     ]);
-  
-    // Fetches a response from the AI each time the user sends a message
-    useEffect(() => {
-      const fetchAIResponse = async () => {
-        const userMessage = chatHistory[chatHistory.length - 1];
-        
-        if (userMessage && userMessage.role === "user") {
-          const response = await axios.get(
-            ".netlify/functions/aichat", 
-            {
-              params: {
-                input: userMessage.text,
-                history: chatHistory.map(message => `\n${message.role === "AI" ? "VIA" : "Agent de vente"}: ${message.text}`).join('')
-              }
-            }
-          );
-        
-          if (response.status === 200) {
-            setChatHistory([
-              ...chatHistory,
-              {
-                role: "AI",
-                text: response.data.output
-              }
-            ]);
-          }
-        }
-      };
-  
-      fetchAIResponse();
-    }, [chatHistory]);
-  
-    // Handles when the user sends a message
-    const handleSend = () => {
-      setChatHistory([
-        ...chatHistory,
-        {
-          role: "user",
-          text: userInput
-        }
-      ]);
-  
-      setUserInput("");
-    };
-  
-    // Renders the conversation history
-    const renderChatHistory = () => {
-      return chatHistory.map((message, index) => (
-        message.role === "AI" ? (
-          <AIText key={index}>{message.text}</AIText>
-        ) : (
-          <UserText key={index}>{message.text}</UserText>
-        )
-      ));
-    };
+
+    setUserInput("");
+  };
+
+  const openLinks = () => {
+    window.open("https://clicplus.int.videotron.com/vui/#/", "_blank");
+    window.open("https://csr.etiya.videotron.com/private/search", "_blank");
+    window.open("https://ops.hub.videotron.com/FR/procedures/Pages/etiquettes-liste-de-prix-mobile.aspx", "_blank");
+    window.open("https://app-videotron.beehivr.com/app-login", "_blank");
+    window.open("https://conciliation.videotron.com/", "_blank");
+  };
+
+  // Renders the conversation history
+  const renderChatHistory = () => {
+    return chatHistory.map((message, index) => (
+      message.role === "AI" ? (
+        <AIText key={index}>{message.text}</AIText>
+      ) : (
+        <UserText key={index}>{message.text}</UserText>
+      )
+    ));
+  };
 
   return (
     <ViewContainer>
       <LeftContainer>
         <LogoContainer>
           <Logo>VIA</Logo>
+          <svg fill="none" height="72" viewBox="0 0 72 72" width="72" xmlns="http://www.w3.org/2000/svg">
+            <path class="fill-brand" d="m72 0h-72v72h72z"></path>
+            <path fill="#000" d="m19.4496 18.4777 34.8306 17.3199-34.8725 17.7222 22.43-17.6687z"></path>
+
+          </svg>
         </LogoContainer>
         <BottomContainer>
           <SectionContainer>
             <SectionTitle>Liens Essentiels</SectionTitle>
+            <RapidAccess onClick={openLinks}>
+              <svg fill="#1c1c1c" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="m6 12 2-9h7.5L14 9h4L9 21l1.5-9H6Z"></path>
+              </svg>
+            </RapidAccess>
             <Inner>
               <LinksContainer>
                 {Links.map((link) => (
@@ -95,13 +113,13 @@ export default function App() {
       </LeftContainer>
       <RightContainer>
         <SectionContainer>
-          <SectionTitle>VIA</SectionTitle>
+          <SectionTitle>Assistant VIA</SectionTitle>
           <Inner>
             <ChatView>
-            {renderChatHistory()}
+              {renderChatHistory()}
             </ChatView>
             <UserInput>
-            <ChatInput value={userInput} onChange={event => setUserInput(event.target.value)} />
+              <ChatInput value={userInput} onChange={event => setUserInput(event.target.value)} />
               <SendButton onClick={handleSend}>
                 <svg height="100%" width="100%" fill="#414141" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="m21.426 11.095-17-8A1 1 0 0 0 3.03 4.242l1.212 4.85L12 12l-7.758 2.91-1.212 4.848a.998.998 0 0 0 1.396 1.147l17-8a1.001 1.001 0 0 0 0-1.81Z"></path>
@@ -139,15 +157,22 @@ const LogoContainer = styled.div`
   height: 35%;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  & svg {
+    margin-left: 10px;
+    fill: #ffd200;
+    border-radius: 50%;
+  }
+
 `;
 
 const Logo = styled.h1`
   font-size: 8rem;
-  color: #ffda58;
+  color: #ffd200;
 `;
 
 const BottomContainer = styled.div`
@@ -173,7 +198,8 @@ const RightContainer = styled.div`
 const SectionContainer = styled.div`
   position: relative;
   height: 90%;
-  border: 1px solid #ffda5880;
+  background-color: #ffd200;
+  border: 1px solid #ffd200;
   border-radius: 10px;
   border-top-left-radius: 0;
   padding: 15px;
@@ -181,16 +207,50 @@ const SectionContainer = styled.div`
 
 const SectionTitle = styled.h2`
 position: absolute;
-top: -46px;
+top: -44px;
 left: -1px;
 font-size: 1rem;
-color: #fff;
+font-weight: 800;
+color: #1c1c1c;
 padding: 10px 35px;
 margin: 0;
-border: 1px solid #ffda5880;
-border-bottom: 1px solid #1c1c1c;
+border: 1px solid #ffd200;
+border-bottom: none;
+background-color: #ffd200;
+border-bottom: none;
 border-top-left-radius: 10px;
 border-top-right-radius: 10px
+`;
+
+const RapidAccess = styled.button`
+  position: absolute;
+  top: -44px;
+  left: 200px;
+  height: 46px;
+  width: 46px;
+  border: 1px solid #ffd200;
+  border-bottom: none;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #ffd200;
+  color: #1c1c1c;
+  font-size: 1.2rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  padding: 10px;
+
+  &:hover {
+    & svg {
+      transform: scale(1.1);
+      fill: #1c1c1c;
+    }
+  }
+
+  &:active {
+    & svg {
+      transform: scale(0.9);
+    }
+  }
 `;
 
 const Inner = styled.div` 
@@ -198,7 +258,15 @@ const Inner = styled.div`
   height: 100%;
   width: 100%;
   border: 1px solid #414141A0;
+  background-color: #1c1c1c;
   border-radius: 10px;
+  padding: 15px;
+`;
+
+const LinksContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: inherit;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -210,18 +278,9 @@ const Inner = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #ffda5880;
+    background: #5c5c5c;
     border-radius: 10px;
   }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #ffda58;
-  }
-`;
-
-const LinksContainer = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 const Link = styled.a`
@@ -233,12 +292,12 @@ const Link = styled.a`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: #ffda58;
+    color: #ffd200;
     background-color: #414141;
   }
 
   &:active {
-    color: #ffda58;
+    color: #ffd200;
   }
 
   &:first-child {
@@ -270,7 +329,7 @@ const ChatInput = styled.input`
   transition: all 0.2s ease-in-out;
 
   &:focus {
-    border-color: #ffda58;
+    border-color: #ffd200;
   }
 `;
 
@@ -289,10 +348,10 @@ const SendButton = styled.button`
   &:hover {
     & svg {
       transform: scale(1.1);
-      fill: #ffda58;
+      fill: #ffd200;
     }
 
-    border-color: #ffda58;
+    border-color: #ffd200;
   }
 
   &:active {
@@ -320,12 +379,12 @@ const ChatView = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #ffda5880;
+    background: #ffd20080;
     border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #ffda58;
+    background: #ffd200;
   }
 
 `;
@@ -336,8 +395,8 @@ const AIText = styled.p`
   max-width: 80%;
   padding: 10px 15px;
   border-radius: 10px;
-  background-color: #ffc90c50;
-  color: #fff;
+  background-color: #ffd200;
+  color: #1c1c1c;
   font-size: 1.2rem;
   align-self: flex-start;
 `;
