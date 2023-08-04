@@ -24,8 +24,7 @@ exports.handler = async function(event, context) {
     if (data) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ output: " " + data.output_text.trim() }), // Replace 'output_text' with the appropriate response property name
-      };
+        body: JSON.stringify({ output: " " + data.response.trim() }),
     } else {
       return {
         statusCode: 200,
