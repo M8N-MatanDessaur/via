@@ -19,7 +19,7 @@ exports.handler = async function(event, context) {
       }
     );
 
-    const data = response.data;
+    const data = response.json;
 
     if (data) {
       return {
