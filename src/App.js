@@ -19,7 +19,7 @@ export default function App() {
   const [chatHistory, setChatHistory] = useState([
     {
       role: "AI",
-      text: "Bonjour, je suis VIA, votre futur assistant virtuel. A cause de Raul vous ne pouvez pas me parler pour le moment. Veuillez réessayer plus tard."
+      text: "Bonjour, je suis VIA. A cause de Raul vous ne pouvez pas me parler pour le moment. Veuillez réessayer plus tard."
     }
   ]);
 
