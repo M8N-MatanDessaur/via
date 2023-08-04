@@ -24,7 +24,7 @@ export default function App() {
         
         if (userMessage && userMessage.role === "user") {
           const response = await axios.get(
-            "./netlify/functions/aichat", 
+            ".netlify/functions/aichat", 
             {
               params: {
                 input: userMessage.text,
