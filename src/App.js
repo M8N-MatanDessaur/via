@@ -299,7 +299,7 @@ const Inner = styled.div`
   width: 100%;
   border: 1px solid #414141A0;
   background-color: #1c1c1c;
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 15px;
 `;
 
