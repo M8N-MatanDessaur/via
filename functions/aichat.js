@@ -10,6 +10,9 @@ const fetchGoogleSearchResults = async (query) => {
       }
     });
 
+    // Add additional logging here
+    console.log("Full response data from Google API: ", response.data);
+
     if (response.data.items) {
       const firstResult = response.data.items[0];
       console.log(firstResult);
@@ -18,16 +21,26 @@ const fetchGoogleSearchResults = async (query) => {
 
     return null;
   } catch (error) {
-    console.error(error);
+    console.error("Error in fetchGoogleSearchResults: ", error);
     return null;
   }
-}
+};
+
 
 exports.handler = async function(event, context) {
   try {
     const conversationHistory = event.queryStringParameters.history;
     const userInput = event.queryStringParameters.input;
     const searchResult = await fetchGoogleSearchResults(event.queryStringParameters.input);
+
+    
+    if (!searchResult) {
+      // handle the case when no search results are returned
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ output: `I couldn't find any information about that, can you please ask something else?` }),
+      };
+    }
 
     // Include the search result as part of the AI's prompt
     const prompt = `
