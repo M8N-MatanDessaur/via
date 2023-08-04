@@ -15,7 +15,7 @@ exports.handler = async function(event, context) {
       },
       data: {
         enable_google_results: 'true', 
-        enable_memory: true, 
+        enable_memory: false, 
         input_text: userInput
       }
     };
