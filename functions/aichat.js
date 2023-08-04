@@ -6,6 +6,7 @@ exports.handler = async function(event, context) {
 
     const options = {
       method: 'POST',
+      timeout: 45000,
       url: 'https://api.writesonic.com/v2/business/content/chatsonic',
       params: {engine: 'premium', language: 'fr'},
       headers: {
