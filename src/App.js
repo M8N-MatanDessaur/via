@@ -159,6 +159,10 @@ const ViewContainer = styled.div`
   display: flex;
   gap: 25px;
   padding: 25px;
+
+  @media (max-width: 500px) {
+    padding: 0;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -222,6 +226,10 @@ const SectionContainer = styled.div`
   border-radius: 10px;
   border-top-left-radius: 0;
   padding: 15px;
+
+  @media (max-width: 500px) {
+    height: 100%;
+  }
 `;
 
 const SectionTitle = styled.h2`
