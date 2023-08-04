@@ -4,7 +4,7 @@ exports.handler = async function(event, context) {
   try {
     const userInput = event.queryStringParameters.input;
 
-    const response = await axios.post("https://api.writesonic.com/v2/business/content/chatsonic", 
+    const response = await axios.post("https://api.writesonic.com/v2/business/content/chatsonic?engine=premium&language=fr", 
       {
         enable_google_results: 'true',
         enable_memory: true,
