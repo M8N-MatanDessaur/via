@@ -27,7 +27,8 @@ export default function App() {
   useEffect(() => {
     const fetchAIResponse = async () => {
       const userMessage = chatHistory[chatHistory.length - 1];
-    
+
+    try{
       if (userMessage && userMessage.role === "user") {
         setIsLoading(true); // Start loading
         const response = await axios.get(
@@ -51,6 +52,26 @@ export default function App() {
         }
         setIsLoading(false); // End loading
       }
+    } catch (error) {
+      console.error(error);  // This line will log the error details to the console
+      if (error.code === 'ECONNABORTED') { // Axios error code for a timeout
+        setChatHistory([
+          ...chatHistory,
+          {
+            role: "AI",
+            text: "Une erreur est survenue: Le serveur a mis trop de temps à répondre."
+          }
+        ]);
+      } else {
+        setChatHistory([
+          ...chatHistory,
+          {
+            role: "AI",
+            text: "Erreur: " + error.message
+          }
+        ]);
+      }
+      setIsLoading(false); // End loading
     };
     
 
