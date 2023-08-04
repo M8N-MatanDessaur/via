@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import axios from 'axios';
 
@@ -8,6 +8,8 @@ import Links from "./JSON/Links.json";
 export default function App() {
   // state for the user's input
   const [userInput, setUserInput] = useState("");
+  const chatEndRef = React.useRef(null);
+
 
   // state for the conversation history
   const [chatHistory, setChatHistory] = useState([
@@ -46,6 +48,10 @@ export default function App() {
     };
 
     fetchAIResponse();
+  }, [chatHistory]);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatHistory]);
 
   // Handles when the user sends a message
@@ -117,6 +123,7 @@ export default function App() {
           <Inner>
             <ChatView>
               {renderChatHistory()}
+               <div ref={chatEndRef} />
             </ChatView>
             <UserInput>
               <ChatInput value={userInput} onChange={event => setUserInput(event.target.value)} onKeyPress={event => {
