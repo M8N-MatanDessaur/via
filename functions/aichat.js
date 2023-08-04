@@ -7,7 +7,7 @@ exports.handler = async function(event, context) {
     const prompt = `
     ${conversationHistory}
     \nAgent de vente: ${userInput}
-    \nVIA: Veuillez fournir une réponse détaillée et précise à la question de l'utilisateur. La conversation porte sur les ventes et le service à la clientèle chez "Videotron".`;
+    \nVIA: Veuillez fournir une réponse détaillée à la question de l'utilisateur. La conversation porte sur les ventes et le service à la clientèle chez "Videotron". La base de connaissance est constituée de données dattant de 2021 et moins donc tu ne peux pas parler d'actualité ni comparer des prix. Tu dois répondre à la question de l'utilisateur en utilisant un langage simple et clair.`;
     
     const response = await axios.post("https://api.openai.com/v1/engines/text-davinci-003/completions", 
       {
