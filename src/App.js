@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
 import axios from 'axios';
+import { BounceLoader } from "react-spinners";
+
 
 import Links from "./JSON/Links.json";
 
@@ -8,6 +10,8 @@ import Links from "./JSON/Links.json";
 export default function App() {
   // state for the user's input
   const [userInput, setUserInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const chatEndRef = React.useRef(null);
 
 
@@ -23,8 +27,9 @@ export default function App() {
   useEffect(() => {
     const fetchAIResponse = async () => {
       const userMessage = chatHistory[chatHistory.length - 1];
-
+    
       if (userMessage && userMessage.role === "user") {
+        setIsLoading(true); // Start loading
         const response = await axios.get(
           ".netlify/functions/aichat",
           {
@@ -34,7 +39,7 @@ export default function App() {
             }
           }
         );
-
+    
         if (response.status === 200) {
           setChatHistory([
             ...chatHistory,
@@ -44,8 +49,10 @@ export default function App() {
             }
           ]);
         }
+        setIsLoading(false); // End loading
       }
     };
+    
 
     fetchAIResponse();
   }, [chatHistory]);
@@ -84,14 +91,20 @@ export default function App() {
 
   // Renders the conversation history
   const renderChatHistory = () => {
-    return chatHistory.map((message, index) => (
-      message.role === "AI" ? (
-        <AIText key={index}>{message.text}</AIText>
-      ) : (
-        <UserText key={index}>{message.text}</UserText>
-      )
-    ));
+    return (
+      <>
+        {chatHistory.map((message, index) => (
+          message.role === "AI" ? (
+            <AIText key={index}>{message.text}</AIText>
+          ) : (
+            <UserText key={index}>{message.text}</UserText>
+          )
+        ))}
+        {isLoading && <BounceLoader color="#ffd200" />}
+      </>
+    );
   };
+  
 
   return (
     <ViewContainer>
@@ -417,6 +430,15 @@ const ChatView = styled.div`
 
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const AIText = styled.p`
   position: relative;
   width: fit-content;
@@ -427,6 +449,8 @@ const AIText = styled.p`
   color: #1c1c1c;
   font-size: 1.2rem;
   align-self: flex-start;
+
+  animation: ${fadeIn} 0.5s ease-in;
 `;
 
 const UserText = styled.p`
