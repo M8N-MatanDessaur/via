@@ -56,6 +56,12 @@ export default function App() {
 
   // Handles when the user sends a message
   const handleSend = () => {
+    
+    if (userInput.trim() === "") {
+      return; 
+    }
+    else{
+
     setChatHistory([
       ...chatHistory,
       {
@@ -63,6 +69,7 @@ export default function App() {
         text: userInput
       }
     ]);
+  }
 
     setUserInput("");
   };
