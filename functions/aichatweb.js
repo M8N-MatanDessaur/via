@@ -19,7 +19,8 @@ exports.handler = async function(event, context) {
         input_text: userInput +  "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
         history_data: [
           {
-            input_text: "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
+            is_sent: true,
+            message: "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
           }
         ]
       },
