@@ -104,6 +104,12 @@ export default function App() {
     setUserInput("");
   };
 
+  function askForPermission() {
+    if (window.confirm("Ceci va ouvrir tous les liens essentiels dans de nouveaux onglets. Êtes-vous sûr?")) {
+      openLinks();
+    }
+  }
+
   const openLinks = () => {
     window.open("https://clicplus.int.videotron.com/vui/#/", "_blank");
     window.open("https://csr.etiya.videotron.com/private/search", "_blank");
@@ -141,8 +147,8 @@ export default function App() {
         </LogoContainer>
         <BottomContainer>
           <SectionContainer>
-            <SectionTitle>Liens Essentiels</SectionTitle>
-            <RapidAccess onClick={openLinks}>
+            <SectionTitle>Liens Utiles</SectionTitle>
+            <RapidAccess onClick={askForPermission}>
               <svg fill="#1c1c1c" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="m6 12 2-9h7.5L14 9h4L9 21l1.5-9H6Z"></path>
               </svg>
