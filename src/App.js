@@ -167,6 +167,9 @@ export default function App() {
       <RightContainer>
         <SectionContainer>
           <SectionTitle>Assistant VIA</SectionTitle>
+          <DevText onClick={askForPermission}>
+              En developpement
+            </DevText>
           <Inner>
             <ChatView>
               {renderChatHistory()}
@@ -323,6 +326,21 @@ const RapidAccess = styled.button`
     & svg {
       transform: scale(0.9);
     }
+  }
+`;
+
+const DevText = styled.h2`
+  position: absolute;
+  top: -45px;
+  left: 200px;
+  height: 46px;
+  color: #ffd20080;
+  font-size: 1rem;
+  outline: none;
+  padding: 10px;
+
+  @media (max-width: 500px) {
+    display: none !important;
   }
 `;
 
