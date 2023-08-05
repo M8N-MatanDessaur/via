@@ -36,7 +36,6 @@ export default function App() {
           {
             params: {
               input: userMessage.text,
-              history: chatHistory.map(message => `\n${message.role === "AI" ? "VIA" : "Agent de vente"}: ${message.text}`).join('')
             }
           }
         );
