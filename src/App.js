@@ -137,7 +137,6 @@ export default function App() {
           <svg fill="none" height="72" viewBox="0 0 72 72" width="72" xmlns="http://www.w3.org/2000/svg">
             <path class="fill-brand" d="m72 0h-72v72h72z"></path>
             <path fill="#000" d="m19.4496 18.4777 34.8306 17.3199-34.8725 17.7222 22.43-17.6687z"></path>
-
           </svg>
         </LogoContainer>
         <BottomContainer>
@@ -265,6 +264,7 @@ const SectionContainer = styled.div`
 
   @media (max-width: 500px) {
     height: 100%;
+    border-radius: none;
   }
 `;
 
