@@ -19,7 +19,7 @@ exports.handler = async function(event, context) {
         enable_memory: false, 
         input_text: `${chatHistory}
         \nAgent de vente: ${userInput}
-        \nVIA: Veuillez fournir une réponse détaillée sans aucune références, ni liens, ni sites web à la question ou requête de l'utilisateur avec un maximum de 256 caractères sachant qu'il travail chez Videotron au Québec. La conversation porte sur les ventes, le service à la clientèle et la télécommunication. Pour plus de références, veuillez consulter le site web de Videotron: https://videotron.com/mobilite/telephones-mobiles pour les téléphones mobiles et https://videotron.com/residentiel ou https://videotron.com/helix pour les services résidentiels.	`
+        \nVIA: Veuillez fournir une réponse détaillée "sans aucune références, ni liens, ni sites web" à la question ou requête de l'utilisateur avec un maximum de "256 caractères" sachant qu'il travail chez Videotron au Québec. La conversation porte sur les ventes et la télécommunication. Pour plus de références, veuillez consulter le site web de Videotron: https://videotron.com/mobilite/telephones-mobiles pour les téléphones mobiles et https://videotron.com/residentiel ou https://videotron.com/helix pour les services résidentiels.`
       },
     };
   
