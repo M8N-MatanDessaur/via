@@ -19,7 +19,7 @@ exports.handler = async function(event, context) {
         enable_memory: false, 
         input_text: `${chatHistory}
         \nAgent de vente: ${userInput}
-        \nVIA: Veuillez fournir une réponse détaillée et précise à la question ou requête de l'utilisateur. La conversation porte sur les ventes, le service à la clientèle et la télécommunication.`
+        \nVIA: Veuillez fournir une réponse détaillée et précise sans références ni liens à la question ou requête de l'utilisateur avec un maximum de 256 caractères. La conversation porte sur les ventes, le service à la clientèle et la télécommunication.`
       },
     };
   
