@@ -16,11 +16,11 @@ exports.handler = async function(event, context) {
       data: {
         enable_google_results: 'true', 
         enable_memory: true, 
-        input_text: userInput +  "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
+        input_text: userInput,
         history_data: [
           {
             is_sent: true,
-            message: "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
+            message: "tu est un chatbot nommé VIA, tu es programmé pour répondre à des questions du vendeur de Videotron tu retourne seulement la réponse et ce avec un maximum de 512 caractères, pas de references, pas de liens.",
           }
         ]
       },
@@ -31,12 +31,12 @@ exports.handler = async function(event, context) {
     if (response.data) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ output: " " + response.data.message}), 
+        body: JSON.stringify({ message: " " + response.data.message}), 
       };
     } else {
       return {
         statusCode: 200,
-        body: JSON.stringify({ output: `Oh oh ... essayez encore` }),
+        body: JSON.stringify({ message: `Oh oh ... essayez encore` }),
       };
     }
   } catch (error) {

@@ -45,7 +45,7 @@ export default function App() {
             ...chatHistory,
             {
               role: "AI",
-              text: response.data.output
+              text: response.data.message
             }
           ]);
         }
