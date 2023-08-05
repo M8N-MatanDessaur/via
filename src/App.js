@@ -169,7 +169,7 @@ export default function App() {
         <SectionContainer>
           <SectionTitle>Assistant VIA</SectionTitle>
           <DevText onClick={askForPermission}>
-              En developpement
+              En developpement (chatsonic)
             </DevText>
           <Inner>
             <ChatView>
