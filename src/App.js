@@ -19,7 +19,7 @@ export default function App() {
   const [chatHistory, setChatHistory] = useState([
     {
       role: "AI",
-      text: "Bonjour, je suis VIA, votre assistant virtuel. Comment puis-je vous aider?"
+      text: "Bonjour, je suis VIA, votre assistant virtuel.\nJe ne suis pas encore lié à une base de données de Videotron, cependant je peux quand même répondre a vos questions."
     }
   ]);
 
