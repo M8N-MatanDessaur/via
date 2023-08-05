@@ -105,7 +105,7 @@ export default function App() {
   };
 
   function askForPermission() {
-    if (window.confirm("Ceci va ouvrir tous les liens essentiels dans de nouveaux onglets. Êtes-vous sûr?")) {
+    if (window.confirm("Ceci va ouvrir tous les liens essentiels dans de nouveaux onglets. N'oubliez pas d'accepter les popups.")) {
       openLinks();
     }
   }
