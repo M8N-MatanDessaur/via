@@ -36,6 +36,7 @@ export default function App() {
           {
             params: {
               input: userMessage.text,
+              chatHistory: chatHistory
             }
           }
         );
