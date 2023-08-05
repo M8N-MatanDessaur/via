@@ -299,7 +299,7 @@ border-top-right-radius: 10px;
 const RapidAccess = styled.button`
   position: absolute;
   top: -44px;
-  left: 200px;
+  left: 165px;
   height: 46px;
   width: 46px;
   border: 1px solid #ffd200;
