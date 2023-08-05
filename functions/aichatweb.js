@@ -17,7 +17,11 @@ exports.handler = async function(event, context) {
       data: {
         enable_google_results: 'true', 
         enable_memory: true, 
-        input_text: userInput
+        input_text: userInput,
+        {
+          "is_sent": false,
+          "message": "Tu es un chatbot nommée VIA programmé pour répondre aux question des vendeurs de Videotron."
+        }
       },
       timeout: 45000,
     };
