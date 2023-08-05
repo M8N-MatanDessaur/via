@@ -59,7 +59,7 @@ export default function App() {
           ...chatHistory,
           {
             role: "AI",
-            text: "Une erreur est survenue: Le serveur a mis trop de temps à répondre."
+            text: "Une erreur est survenue réeessayer encore."
           }
         ]);
       } else {
@@ -67,7 +67,7 @@ export default function App() {
           ...chatHistory,
           {
             role: "AI",
-            text: "Une erreur est survenue: Le serveur a mis trop de temps à répondre."
+            text: "Une erreur est survenue réeessayer encore."
           }
         ]);
       }

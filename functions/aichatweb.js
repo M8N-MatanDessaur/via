@@ -33,7 +33,7 @@ exports.handler = async function(event, context) {
     } else {
       return {
         statusCode: 200,
-        body: JSON.stringify({ message: `Oh oh ... essayez encore` }),
+        body: JSON.stringify({ message: "Une erreur est survenue réeessayer encore." }),
       };
     }
   } catch (error) {
@@ -41,7 +41,7 @@ exports.handler = async function(event, context) {
     if (error.code === 'ECONNABORTED') { // Axios error code for a timeout
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: "Timeout: The request took too long to complete." }),
+        body: JSON.stringify({ error: "Une erreur est survenue réeessayer encore." }),
       };
     } else {
       return {
