@@ -17,7 +17,7 @@ exports.handler = async function(event, context) {
       data: {
         enable_google_results: 'true', 
         enable_memory: true, 
-        input_text: "Voici une conversation entre le chatbot VIA et le vendeur de Videotron" + chatHistory + ". Réponds a la requete suivante:"  userInput,
+        input_text: "Voici une conversation entre le chatbot VIA et le vendeur de Videotron" + chatHistory + ". Réponds a la requete suivante:" + userInput,
         history_data: [
           {
             is_sent: true,
