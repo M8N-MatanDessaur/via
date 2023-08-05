@@ -17,7 +17,7 @@ exports.handler = async function(event, context) {
       data: {
         enable_google_results: 'true', 
         enable_memory: true, 
-        input_text: "Tu prends le role d'un bot IA nommé VIA qui assiste les agents de Videotron (au Québec) avec leurs questions. Tu réponds uniquement aux questions qui sont liées à la télécommunications, la vente et les sujet connexes. Prends seulement les données les plus à jours et les plus récents... Question de l'agent: " + userInput + " retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
+        input_text: userInput +  "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
       },
       timeout: 45000,
     };
