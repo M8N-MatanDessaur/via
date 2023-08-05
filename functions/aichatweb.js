@@ -6,7 +6,6 @@ exports.handler = async function(event, context) {
 
     const options = {
       method: 'POST',
-      timeout: 45000,
       url: 'https://api.writesonic.com/v2/business/content/chatsonic',
       params: {engine: 'premium', language: 'fr'},
       headers: {
@@ -18,8 +17,12 @@ exports.handler = async function(event, context) {
         enable_google_results: 'true', 
         enable_memory: true, 
         input_text: userInput +  "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
+        history_data: [
+          {
+            input_text: "retourne seulement la réponse et ce avec un max de 512 caractères, pas de references, pas de liens",
+          }
+        ]
       },
-      timeout: 45000,
     };
   
     const response = await axios.request(options);
