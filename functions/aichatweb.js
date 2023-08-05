@@ -20,9 +20,9 @@ exports.handler = async function(event, context) {
         input_text: userInput + "in a max of characters 1024, no references, no links",
         history_data: [
           {
-            "Context": "Tu es un bot IA nommé VIA qui assiste les agents de Videotron avec leurs questions. Tu réponds uniquement aux questions qui sont liées à la télécommunications et aux domaines connexes."
+            contexte: 'Tu es un bot IA nommé VIA qui assiste les agents de Videotron avec leurs questions. Tu réponds uniquement aux questions qui sont liées aux télécommunications et aux domaines connexes.'
           }
-        ],
+        ]
       },
       timeout: 45000,
     };
