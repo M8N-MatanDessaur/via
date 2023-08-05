@@ -264,7 +264,7 @@ const SectionContainer = styled.div`
 
   @media (max-width: 500px) {
     height: 100%;
-    border-radius: none;
+    border-radius: 0;
   }
 `;
 
