@@ -19,7 +19,7 @@ exports.handler = async function(event, context) {
         enable_memory: false, 
         input_text: `${chatHistory}
         \nAgent de vente: ${userInput}
-        \nVIA: Veuillez fournir une réponse détaillée avec les détails les plus récents de 2023 (aucun appareil sortis un dessous de 2022) "sans aucune références, ni liens, ni sites web" à la question ou requête de l'utilisateur avec un maximum de "256 caractères" sachant qu'il travail chez Videotron au Québec. La conversation porte sur les ventes et la télécommunication.`
+        \nVIA: Veuillez fournir une réponse détaillée avec les détails les plus récents de 2023 (aucun appareil sortis un dessous de 2022) avec un maximum de "256 caractères", "sans aucune références, ni liens, ni sites web" à la question ou requête de l'utilisateur sachant qu'il travail chez Videotron au Québec. La conversation porte sur les ventes et la télécommunication.`
       },
     };
   
