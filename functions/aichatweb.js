@@ -17,12 +17,7 @@ exports.handler = async function(event, context) {
       data: {
         enable_google_results: 'true', 
         enable_memory: true, 
-        input_text: userInput + "in a max of characters 1024, no references, no links",
-        history_data: [
-          {
-            contexte: 'Tu es un bot IA nommé VIA qui assiste les agents de Videotron avec leurs questions. Tu réponds uniquement aux questions qui sont liées aux télécommunications et aux domaines connexes.'
-          }
-        ]
+        input_text: "Tu es un bot IA nommé VIA qui assiste les agents de Videotron avec leurs questions. Tu réponds uniquement aux questions qui sont liées aux télécommunications et aux domaines connexes. Question de l'agent: " + userInput + " réponds avec un max de 1024 caractères, pas de references, pas de liens",
       },
       timeout: 45000,
     };
