@@ -17,7 +17,7 @@ exports.handler = async function(event, context) {
       data: {
         enable_google_results: 'true', 
         enable_memory: true, 
-        input_text: userInput,
+        input_text: userInput + "max chars 1024, no references, no links",
       },
       timeout: 45000,
     };
