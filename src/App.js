@@ -168,7 +168,7 @@ export default function App() {
       <RightContainer>
         <SectionContainer>
           <SectionTitle>Assistant VIA</SectionTitle>
-          <DevText onClick={askForPermission}>
+          <DevText>
               En developpement (chatsonic)
             </DevText>
           <Inner>
