@@ -19,7 +19,7 @@ export default function App() {
   const [chatHistory, setChatHistory] = useState([
     {
       role: "AI",
-      text: "Bonjour, je suis VIA. A cause de Raul vous ne pouvez pas me parler pour le moment. Veuillez réessayer plus tard."
+      text: "Bonjour, je suis VIA, votre assistant virtuel. Comment puis-je vous aider?"
     }
   ]);
 
@@ -169,13 +169,13 @@ export default function App() {
                <div ref={chatEndRef} />
             </ChatView>
             <UserInput>
-              <ChatInput disabled value={userInput} onChange={event => setUserInput(event.target.value)} onKeyPress={event => {
+              <ChatInput  value={userInput} onChange={event => setUserInput(event.target.value)} onKeyPress={event => {
                 if (event.key === 'Enter') {
                   handleSend();
                   event.preventDefault(); // Prevents the addition of a new line in the input on Enter
                 }
               }} />
-              <SendButton disabled onClick={handleSend}>
+              <SendButton  onClick={handleSend}>
                 <svg height="100%" width="100%" fill="#414141" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="m21.426 11.095-17-8A1 1 0 0 0 3.03 4.242l1.212 4.85L12 12l-7.758 2.91-1.212 4.848a.998.998 0 0 0 1.396 1.147l17-8a1.001 1.001 0 0 0 0-1.81Z"></path>
                 </svg>
