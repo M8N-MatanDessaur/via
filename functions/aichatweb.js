@@ -16,14 +16,8 @@ exports.handler = async function(event, context) {
       },
       data: {
         enable_google_results: 'true', 
-        enable_memory: true, 
+        enable_memory: false, 
         input_text: "Voici une conversation entre le chatbot VIA et le vendeur de Videotron" + chatHistory + ". Réponds a la requete suivante et retourne seulement la dernière réponse:" + userInput,
-        history_data: [
-          {
-            is_sent: true,
-            message: "tu prends le role d'un chatbot nommé VIA, tu es programmé pour répondre à des questions du vendeur de Videotron tu retourne seulement la réponse et ce avec un maximum de 512 caractères, pas de references, pas de liens.",
-          }
-        ]
       },
     };
   
