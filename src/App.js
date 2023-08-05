@@ -32,7 +32,7 @@ export default function App() {
       if (userMessage && userMessage.role === "user") {
         setIsLoading(true); // Start loading
         const response = await axios.get(
-          ".netlify/functions/aichat",
+          ".netlify/functions/aichatweb",
           {
             params: {
               input: userMessage.text,
